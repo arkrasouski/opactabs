@@ -1,0 +1,3 @@
+[submodule "libs/FTB-Teams"]
+	path = libs/FTB-Teams
+	url = https://github.com/FTBTeam/FTB-Teams.git

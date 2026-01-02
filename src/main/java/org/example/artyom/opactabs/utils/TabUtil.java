@@ -1,10 +1,15 @@
 package org.example.artyom.opactabs.utils;
-
+import dev.ftb.mods.ftbteams.api.FTBTeamsAPI;
+import dev.ftb.mods.ftbteams.api.TeamManager;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.scores.PlayerTeam;
 import net.minecraft.world.scores.Scoreboard;
+import dev.ftb.mods.ftbteams.api.Team;
 import xaero.pac.common.server.api.OpenPACServerAPI;
+
+import java.util.Optional;
+import java.util.UUID;
 
 public class TabUtil {
 
@@ -14,34 +19,59 @@ public class TabUtil {
         Scoreboard scoreboard = player.getScoreboard();
         String playerName = player.getScoreboardName();
 
-        var party = api.getPartyManager().getPartyByMember(player.getUUID());
+        // Получаем команду игрока
+        Optional<Team> partyOpt = FTBTeamsAPI.api()
+                .getManager()
+                .getTeamForPlayerID(player.getUUID());
 
-        String teamName;
+        String scoreboardTeamName;
         Component prefix;
+        if (partyOpt.isPresent()) {
+            Team party = partyOpt.get();
 
-        if (party != null) {
-            teamName = TEAM_PREFIX + party.getId();
-            prefix = Component.literal("§7[" + party.getDefaultName() + "] ");
+            // UUID команды удобно использовать как уникальный ключ
+            UUID id = party.getId(); // если в твоей версии метод называется иначе — скажи, подстрою
+            scoreboardTeamName = TEAM_PREFIX + id;
+            // Отображаемое имя партии
+            prefix = Component.literal("[")
+                    .append(party.getColoredName())   // сохраняет цвет/стиль
+                    .append(Component.literal("] "));
+            player.sendSystemMessage(prefix);
+            // возможно getDisplayName() в твоей версии
         } else {
-            teamName = TEAM_PREFIX + "solo";
-            prefix = Component.literal("§7[Solo] ");
+            scoreboardTeamName = TEAM_PREFIX + "solo";
+            prefix = Component.literal("");
         }
 
-        // Удаляем из старых команд (из старой партии)
+        // 3) Удаляем игрока из старых наших scoreboard-команд
         removeFromOurTeams(scoreboard, playerName);
 
-        PlayerTeam team = scoreboard.getPlayerTeam(teamName);
-        if (team == null) {
-            team = scoreboard.addPlayerTeam(teamName);
-            team.setPlayerPrefix(prefix);
+        // 4) Создаём/обновляем scoreboard-team и добавляем игрока
+        PlayerTeam sbTeam = scoreboard.getPlayerTeam(scoreboardTeamName);
+        if (sbTeam == null) {
+            sbTeam = scoreboard.addPlayerTeam(scoreboardTeamName);
         }
+        sbTeam.setPlayerPrefix(prefix);
 
-        scoreboard.addPlayerToTeam(playerName, team);
+        scoreboard.addPlayerToTeam(playerName, sbTeam);
     }
 
     public static void cleanupPlayer(ServerPlayer player, OpenPACServerAPI api) {
         removeFromOurTeams(player.getScoreboard(), player.getScoreboardName());
     }
+
+    public static Optional<Team> getTeam(ServerPlayer player) {
+        Optional<Team> teamOpt = FTBTeamsAPI.api().getManager().getTeamForPlayer(player);
+        return teamOpt;
+    }
+
+    public static Optional<Team> getTeam(UUID playerId) {
+        return FTBTeamsAPI.api()
+                .getManager()
+                .getTeamForPlayerID(playerId); // Optional<Team>
+    }
+
+
 
     private static void removeFromOurTeams(Scoreboard scoreboard, String playerName) {
         for (PlayerTeam team : scoreboard.getPlayerTeams()) {
