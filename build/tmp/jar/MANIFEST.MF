@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Specification-Title: opactabs
+Specification-Vendor: 
+Specification-Version: 1
+Implementation-Title: customwars
+Implementation-Version: 1.0-SNAPSHOT
+Implementation-Vendor: 
+Implementation-Timestamp: 2026-01-01T17:14:55+0300
+MixinConfigs: opactabs.mixins.json
+
