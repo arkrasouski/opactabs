@@ -26,7 +26,7 @@ public class TabUtil {
 
         String scoreboardTeamName;
         Component prefix;
-        if (partyOpt.isPresent()) {
+        if (partyOpt.isPresent() && partyOpt.get().isPartyTeam()) {
             Team party = partyOpt.get();
 
             // UUID команды удобно использовать как уникальный ключ
@@ -36,7 +36,6 @@ public class TabUtil {
             prefix = Component.literal("[")
                     .append(party.getColoredName())   // сохраняет цвет/стиль
                     .append(Component.literal("] "));
-            player.sendSystemMessage(prefix);
             // возможно getDisplayName() в твоей версии
         } else {
             scoreboardTeamName = TEAM_PREFIX + "solo";

@@ -2,6 +2,7 @@ package org.example.artyom.opactabs;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
+import org.example.artyom.opactabs.events.MyFTBTeamsHooks;
 import org.example.artyom.opactabs.events.PartyEvents;
 import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
@@ -14,7 +15,7 @@ public class Opactabs {
 
     public Opactabs() {
         MinecraftForge.EVENT_BUS.register(new PartyEvents());
-
+        MyFTBTeamsHooks.init();
         LOGGER.info("OPAC Tabs (Server-side) загружен");
     }
 }

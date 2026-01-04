@@ -5,7 +5,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import xaero.pac.common.server.api.OpenPACServerAPI;
-
+import dev.ftb.mods.ftbteams.api.event.PlayerJoinedPartyTeamEvent;
 import org.example.artyom.opactabs.utils.TabUtil;
 
 public class PartyEvents {
@@ -31,4 +31,6 @@ public class PartyEvents {
         OpenPACServerAPI api = OpenPACServerAPI.get(server);
         TabUtil.cleanupPlayer(player, api);
     }
+
+
 }
