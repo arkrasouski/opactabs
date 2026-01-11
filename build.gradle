@@ -16,7 +16,7 @@ plugins {
     id 'maven-publish'
     id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
-    id "architectury-plugin" version "3.4-SNAPSHOT"
+
 }
 
 apply plugin: 'org.spongepowered.mixin'
@@ -155,6 +155,7 @@ dependencies {
     implementation fg.deobf("maven.modrinth:open-parties-and-claims:forge-1.20.1-0.25.8")
     implementation files('/home/artyom-krasovski/server-mohist/mods/ftb-teams-forge-2001.3.1.jar')
     implementation files('/home/artyom-krasovski/server-mohist/mods/architectury-9.2.14-forge.jar')
+    implementation files('/home/artyom-krasovski/server-mohist/mods/customwars-1.0-SNAPSHOT.jar')
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")

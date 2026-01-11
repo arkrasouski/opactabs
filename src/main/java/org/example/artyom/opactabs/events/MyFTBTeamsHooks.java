@@ -5,8 +5,9 @@ import dev.ftb.mods.ftbteams.api.event.TeamEvent;
 import dev.ftb.mods.ftbteams.api.event.TeamPropertiesChangedEvent;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
+import org.example.artyom.customwars.saveddata.PartyData;
 import org.example.artyom.opactabs.utils.TabUtil;
-import xaero.pac.common.server.api.OpenPACServerAPI;
+
 
 import java.util.UUID;
 
@@ -19,8 +20,9 @@ public class MyFTBTeamsHooks {
             MinecraftServer server = player.getServer();
             if (server == null) return;
 
-            OpenPACServerAPI api = OpenPACServerAPI.get(server);
-            TabUtil.updatePlayer(player, api);
+
+            PartyData partyData = PartyData.get(player.server.overworld());
+            TabUtil.updatePlayer(player, server, partyData);
         });
 
         TeamEvent.PLAYER_LEFT_PARTY.register(event -> {
@@ -29,8 +31,8 @@ public class MyFTBTeamsHooks {
             MinecraftServer server = player.getServer();
             if (server == null) return;
 
-            OpenPACServerAPI api = OpenPACServerAPI.get(server);
-            TabUtil.updatePlayer(player, api);
+            PartyData partyData = PartyData.get(player.server.overworld());
+            TabUtil.updatePlayer(player, server, partyData);
         });
 
         TeamEvent.PROPERTIES_CHANGED.register(MyFTBTeamsHooks::onTeamPropsChanged);
@@ -55,8 +57,10 @@ public class MyFTBTeamsHooks {
             if (p != null) {
                 anyOnline = p;
                 // тут делай свою логику для каждого онлайн-игрока
-                OpenPACServerAPI api = OpenPACServerAPI.get(server);
-                 TabUtil.updatePlayer(p, api);
+
+
+                PartyData partyData = PartyData.get(p.server.overworld());
+                TabUtil.updatePlayer(p,server, partyData);
             }
         }
 
