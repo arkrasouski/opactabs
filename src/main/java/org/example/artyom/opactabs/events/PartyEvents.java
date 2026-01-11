@@ -2,18 +2,18 @@ package org.example.artyom.opactabs.events;
 
 import dev.ftb.mods.ftbteams.api.FTBTeamsAPI;
 import dev.ftb.mods.ftbteams.api.Team;
-import net.minecraft.network.chat.Component;
+
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.server.ServerLifecycleHooks;
+
 import org.example.artyom.customwars.events.custom.WarScoreChangeEvent;
 import org.example.artyom.customwars.saveddata.PartyData;
-import org.example.artyom.customwars.saveddata.WarSavedData;
+
 import xaero.pac.OpenPartiesAndClaims;
 import xaero.pac.common.server.api.OpenPACServerAPI;
-import dev.ftb.mods.ftbteams.api.event.PlayerJoinedPartyTeamEvent;
+
 import org.example.artyom.opactabs.utils.TabUtil;
 
 import java.util.Set;

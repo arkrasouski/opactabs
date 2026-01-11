@@ -1,6 +1,6 @@
 package org.example.artyom.opactabs.utils;
 import dev.ftb.mods.ftbteams.api.FTBTeamsAPI;
-import dev.ftb.mods.ftbteams.api.TeamManager;
+
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.ServerScoreboard;
@@ -41,10 +41,10 @@ public class TabUtil {
             // Отображаемое имя партии
             prefix = Component.literal("[")
                     .append(party.getColoredName())   // сохраняет цвет/стиль
-                    .append(Component.literal("] "))
+                    .append(Component.literal("]"))
                     .append(Component.literal("["))
                     .append(Component.literal(score))
-                    .append(Component.literal("]"));
+                    .append(Component.literal("] "));
             // возможно getDisplayName() в твоей версии
 
         } else {
