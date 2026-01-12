@@ -8,7 +8,8 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.scores.PlayerTeam;
 import net.minecraft.world.scores.Scoreboard;
 import dev.ftb.mods.ftbteams.api.Team;
-import org.example.artyom.customwars.saveddata.PartyData;
+
+import org.example.artyom.customwars.server.saveddata.PartyData;
 import xaero.pac.common.server.api.OpenPACServerAPI;
 
 import java.util.Optional;

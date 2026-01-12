@@ -8,9 +8,9 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-import org.example.artyom.customwars.events.custom.WarScoreChangeEvent;
-import org.example.artyom.customwars.saveddata.PartyData;
 
+import org.example.artyom.customwars.common.customevents.WarScoreChangeEvent;
+import org.example.artyom.customwars.server.saveddata.PartyData;
 import xaero.pac.OpenPartiesAndClaims;
 import xaero.pac.common.server.api.OpenPACServerAPI;
 

@@ -5,7 +5,8 @@ import dev.ftb.mods.ftbteams.api.event.TeamEvent;
 import dev.ftb.mods.ftbteams.api.event.TeamPropertiesChangedEvent;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
-import org.example.artyom.customwars.saveddata.PartyData;
+
+import org.example.artyom.customwars.server.saveddata.PartyData;
 import org.example.artyom.opactabs.utils.TabUtil;
 
 
